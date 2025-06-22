@@ -1,0 +1,30 @@
+/* Custom admin styles */
+#content {
+    padding: 20px 40px;
+}
+
+.object-tools {
+    margin-bottom: 15px;
+}
+
+.field-availability_status .badge {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+
+.field-profile_thumbnail img {
+    border: 1px solid #ddd;
+}
+
+/* Specialization colors */
+.specialization-GP { background-color: #d4edda !important; }
+.specialization-CAR { background-color: #fff3cd !important; }
+.specialization-DER { background-color: #f8d7da !important; }
+.specialization-PED { background-color: #cce5ff !important; }
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    #content {
+        padding: 10px 15px;
+    }
+}

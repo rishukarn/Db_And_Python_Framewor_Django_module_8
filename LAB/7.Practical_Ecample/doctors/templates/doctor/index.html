@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Doctors</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .doctor-card {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 8px;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .doctor-card img {
+      max-width: 100px;
+      float: right;
+      border-radius: 50%;
+    }
+    .doctor-card h2 {
+      margin: 0;
+      color: #00796b;
+    }
+    .doctor-card p {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Meet Our Doctors</h1>
+  {% for doctor in doctors %}
+  <div class="doctor-card">
+    {% if doctor.image %}
+    <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}">
+    {% endif %}
+    <h2>{{ doctor.name }}</h2>
+    <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+    <p><strong>Experience:</strong> {{ doctor.experience_years }} years</p>
+    <p><strong>Email:</strong> {{ doctor.email }}</p>
+    <p><strong>Phone:</strong> {{ doctor.phone }}</p>
+    <p>{{ doctor.bio }}</p>
+  </div>
+  {% endfor %}
+</body>
+</html>

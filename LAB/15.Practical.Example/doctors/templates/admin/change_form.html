@@ -1,0 +1,20 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'doctors/css/admin.css' %}">
+{% endblock %}
+
+{% block field_sets %}
+<div class="doctor-details-header">
+    <h2>{% if original %}Dr. {{ original.full_name }}{% else %}Add New Doctor{% endif %}</h2>
+    {% if original %}
+    <div class="doctor-status">
+        <span class="status-label">Status:</span>
+        <span class="status-value">{{ original.get_availability_display }}</span>
+    </div>
+    {% endif %}
+</div>
+{{ block.super }}
+{% endblock %}

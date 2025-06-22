@@ -1,0 +1,29 @@
+{% extends 'doctors/base.html' %}
+
+{% block content %}
+    <h1>Doctor Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ doctor.get_specialization_display }}</h6>
+            
+            <p class="card-text">
+                <strong>License Number:</strong> {{ doctor.license_number }}<br>
+                <strong>Contact:</strong> {{ doctor.contact_number }}<br>
+                <strong>Email:</strong> {{ doctor.email }}<br>
+                <strong>Experience:</strong> {{ doctor.years_of_experience }} years<br>
+                <strong>Address:</strong> {{ doctor.address }}<br>
+                <strong>Status:</strong> 
+                {% if doctor.is_available %}
+                    <span class="badge bg-success">Available</span>
+                {% else %}
+                    <span class="badge bg-danger">Not Available</span>
+                {% endif %}
+            </p>
+            
+            <a href="{% url 'doctor-update' doctor.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'doctor-delete' doctor.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'doctor-list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+{% endblock %}

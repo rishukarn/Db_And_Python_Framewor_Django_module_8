@@ -1,0 +1,129 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <style>
+      .alert-error {
+        border-color: var(--color-error) !important;
+        color: var(--color-error-content) !important;
+        --alert-color: var(--color-error) !important;
+    }
+    .alert {
+      border-radius: var(--radius-box);
+      color: var(--color-base-content);
+      background-color: var(--alert-color, var(--color-base-200));
+      text-align: start;
+      border: var(--border) solid var(--color-base-200);
+      background-size: auto, calc(var(--noise) * 100%);
+      background-image: none, var(--fx-noise);
+      box-shadow: 0 3px 0 -2px oklch(100% 0 0 / calc(var(--depth) * .08)) inset, 0 1px 
+  color-mix(in oklab, 
+  color-mix(in oklab, #000 20%, var(--alert-color, var(--color-base-200))) calc(var(--depth) * 20%), #0000), 0 4px 3px -2px oklch(0% 0 0 / calc(var(--depth) * .08));
+      grid-template-columns: auto;
+      grid-auto-flow: column;
+      justify-content: start;
+      place-items: center start;
+      gap: 1rem;
+      padding-block: .75rem;
+      padding-inline: 1rem;
+      font-size: .875rem;
+      line-height: 1.25rem;
+      display: grid
+  ;
+  }
+    </style>
+  </head>
+  <body>
+    <header class="container-fluid nav-colr nav-colr">
+        <nav class="navbar bg-body-tertiary nav-colr">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                <img src="{% static 'img/logo.svg' %}" alt="Bootstrap" width="32" height="26">
+              </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid mt-5">
+        <div class="container ">
+          
+          {% if messages %}
+            {% for message in messages  %}
+            <div role="alert" class="alert alert-success">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{{message}}</span>
+            </div>
+            {% endfor %}
+          {% endif %}
+
+          <div>
+                        
+            {% for errors in form.email.errors %}
+            <div role="alert" class="alert alert-error">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{{errors}}</span>
+            </div>
+            {% endfor %}
+        </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-sm-7 col-12">
+                    <h1 class='mt-5'>Digitel Society SignUp</h1>
+                    <div>
+                      
+                        <form action="{% url 'singup' %}" method="post" class='mt-5' novalidate>
+                          {% csrf_token %}
+                          <div class="mb-3 mt-5">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" value="{{form.name.value | default:''}}" name=name class="form-control" id="name" placeholder="Your Name" required>
+                          </div>
+                            <div class="mb-3 ">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" value="{{form.email.value | default:''}}" class="form-control" name='email' id="email" placeholder="name@example.com" required>
+                              </div>
+                              <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" value='{{form.password.value|default:""}}' name='password' id="password" placeholder="Password" required>
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="confirmpassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmpassword" name='confirm_password' value='{{form.confirm_password.value|default:""}}' placeholder="Confirm Password" required>
+                              </div>
+                              
+                              <div class="mb-3 text-center mt-4">
+                                <button type='submit' class="btn bg-[#622069] text-white border-[#591660] cust1-btn d-flex">
+                                    <svg aria-label="Slack logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g stroke-linecap="round" stroke-width="78"><path stroke="#36c5f0" d="m110 207h97m0-97h.1v-.1"></path><path stroke="#2eb67d" d="m305 110v97m97 0v.1h.1"></path><path stroke="#ecb22e" d="m402 305h-97m0 97h-.1v.1"></path><path stroke="#e01e5a" d="M110 305h.1v.1m97 0v97"></path></g></svg>
+                                    SignUp to Society
+                                  </button>
+                              </div>
+
+                              
+                        </form>
+                        
+
+                          <div class="mb-3 hr-cust mt-5">
+                            <hr><p class='or-cust'> or </p><hr>
+                          </div>
+
+                          <div class="mb-3 text-center res-cust">
+                            <p>Already have an account?<a href="{% url 'Home' %}"> Login</a></p>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  </body>
+</html>

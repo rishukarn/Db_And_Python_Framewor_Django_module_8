@@ -1,0 +1,23 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="doctor-summary">
+    <div class="summary-card">
+        <h3>Total Doctors</h3>
+        <p>{{ cl.result_count }}</p>
+    </div>
+    {% for spec in specializations %}
+    <div class="summary-card specialization-{{ spec.name|slugify }}">
+        <h3>{{ spec.name }}</h3>
+        <p>{{ spec.doctor_count }}</p>
+    </div>
+    {% endfor %}
+</div>
+{{ block.super }}
+{% endblock %}

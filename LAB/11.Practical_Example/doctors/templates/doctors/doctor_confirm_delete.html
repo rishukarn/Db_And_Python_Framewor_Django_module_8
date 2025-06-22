@@ -1,0 +1,12 @@
+{% extends 'doctors/base.html' %}
+
+{% block content %}
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete Dr. {{ object.first_name }} {{ object.last_name }}?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'doctor-detail' object.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
